@@ -8,7 +8,6 @@ defmodule HomeworkWeb.Schema.Query.UsersTest do
 
   setup do
     Repo.delete_all(Transaction)
-    Repo.delete_all(Merchant)
     Repo.delete_all(User)
     users = [
       %User{
