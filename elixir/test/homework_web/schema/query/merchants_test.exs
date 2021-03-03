@@ -11,7 +11,7 @@ defmodule HomeworkWeb.Schema.Query.MerchantsTest do
     Repo.delete_all(Merchant)
     merchants = [
       %Merchant{
-        description: "Exoctic Animal Zoo",
+        description: "Exotic Animal Zoo",
         name: "Greater Wynnewood Exotic Animal Park"
       },
       %Merchant{
@@ -38,7 +38,7 @@ defmodule HomeworkWeb.Schema.Query.MerchantsTest do
     assert json_response(conn, 200) == %{
       "data" => %{
         "merchants" => [
-          %{"description" => "Exoctic Animal Zoo",  "name" => "Greater Wynnewood Exotic Animal Park"},
+          %{"description" => "Exotic Animal Zoo",  "name" => "Greater Wynnewood Exotic Animal Park"},
           %{"description" => "The finest paper products",  "name" => "Dunder Mifflin"},
         ]
       }

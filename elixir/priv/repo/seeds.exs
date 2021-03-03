@@ -47,7 +47,7 @@ user_ids =
 # create some merchants
 merchants = [
   %Merchant{
-    description: "Exoctic Animal Zoo",
+    description: "Exotic Animal Zoo",
     name: "Greater Wynnewood Exotic Animal Park"
   },
   %Merchant{
