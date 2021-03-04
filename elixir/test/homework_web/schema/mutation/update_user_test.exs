@@ -15,7 +15,7 @@ defmodule HomeworkWeb.Schema.Query.UpdateUserTest do
   }
 
   """
-  test "updateUser field updates a user" do
+  test "updateUser field updates a user successfully" do
     user =
       Repo.insert!(%User{
         dob: "3/15/1963",
@@ -47,4 +47,33 @@ defmodule HomeworkWeb.Schema.Query.UpdateUserTest do
              }
            }
   end
+
+  # TODO: work to get this test returning a nice eror when Ecto.NoResultError is raised
+  # test "updateUser field updates a non existant user" do
+  #   user =
+  #     Repo.insert!(%User{
+  #       dob: "3/15/1963",
+  #       first_name: "joseph allen",
+  #       last_name: "schreibvogel"
+  #     })
+
+  #   conn = build_conn()
+
+  #   conn =
+  #     post(conn, "/graphiql",
+  #       query: @query,
+  #       variables: %{
+  #         id: Ecto.UUID.generate(),
+  #         dob: "3/15/1963",
+  #         first_name: "joe",
+  #         last_name: "exotic"
+  #       }
+  #     )
+
+  #   assert json_response(conn, 200) == %{
+  #            "errors" => [
+  #              %{ "locations" => "TODO", "message" => "could not find user" }
+  #            ]
+  #          }
+  # end
 end

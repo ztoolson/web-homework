@@ -2,7 +2,7 @@ defmodule HomeworkWeb.Schema.Query.CreateUserTest do
   use HomeworkWeb.ConnCase, async: true
 
   @query """
-  mutation CreateUser($dob: Episode!, $first_name: FirstName!, $last_name: LastName!) {
+  mutation CreateUser($dob: DOB!, $first_name: FirstName!, $last_name: LastName!) {
     createUser(dob: $dob, first_name: $first_name, last_name: $last_name) {
       dob
       first_name
@@ -49,7 +49,7 @@ defmodule HomeworkWeb.Schema.Query.CreateUserTest do
 
     conn =
       post(conn, "/graphiql",
-        query: @query,
+        query: @invalid_query,
         variables: %{
           first_name: "michael",
           last_name: "scott"
@@ -59,12 +59,8 @@ defmodule HomeworkWeb.Schema.Query.CreateUserTest do
     assert json_response(conn, 200) == %{
              "errors" => [
                %{
-                 "locations" => [%{"column" => 14, "line" => 2}],
+                 "locations" => [%{"column" => 3, "line" => 2}],
                  "message" => "In argument \"dob\": Expected type \"String!\", found null."
-               },
-               %{
-                 "locations" => [%{"column" => 21, "line" => 1}],
-                 "message" => "Variable \"dob\": Expected non-null, found null."
                }
              ]
            }
