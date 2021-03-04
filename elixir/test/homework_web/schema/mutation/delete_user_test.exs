@@ -16,27 +16,32 @@ defmodule HomeworkWeb.Schema.Query.DeleteUserTest do
 
   """
   test "deleteUser field deletes a user" do
-      user = Repo.insert!( %User{
+    user =
+      Repo.insert!(%User{
         dob: "3/15/1963",
         first_name: "joseph allen",
         last_name: "schreibvogel"
       })
-    
 
     conn = build_conn()
-    conn = post conn, "/graphiql", query: @query, variables: %{
-      id: user.id
-    }
+
+    conn =
+      post(conn, "/graphiql",
+        query: @query,
+        variables: %{
+          id: user.id
+        }
+      )
 
     assert json_response(conn, 200) == %{
-      "data" => %{
-        "deleteUser" => %{
-          "id" => user.id,
-          "dob" => "3/15/1963",
-          "first_name" => "joseph allen",
-          "last_name" => "schreibvogel",
-        }
-      }
-    }
+             "data" => %{
+               "deleteUser" => %{
+                 "id" => user.id,
+                 "dob" => "3/15/1963",
+                 "first_name" => "joseph allen",
+                 "last_name" => "schreibvogel"
+               }
+             }
+           }
   end
 end
