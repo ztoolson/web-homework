@@ -12,3 +12,5 @@
 ## why did i choose ExUnit
   ExUnit is already being used in the project. this project is also a json api, not a full stack web application where we might want to test using a browser (looks like hound is the popular library of choice for elixir).
 
+## other notes
+  - i'm not 100% sure on elixir best practices on folder structure / where to place the tests. how does divvy structure their tests?
