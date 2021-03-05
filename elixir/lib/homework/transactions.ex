@@ -26,6 +26,9 @@ defmodule Homework.Transactions do
       {:min, min}, query ->
         from(t in query, where: t.amount >= ^min)
 
+      {:max, max}, query ->
+        from(t in query, where: t.amount <= ^max)
+
       _, query ->
         query
     end)

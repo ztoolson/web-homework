@@ -12,8 +12,10 @@ defmodule HomeworkWeb.Schema do
   query do
     @desc "Get all Transactions"
     field(:transactions, list_of(:transaction)) do
-      @desc "min is a filter for minimum amount"
+      @desc "min is a filter for minimum amount value"
       arg(:min, :currency)
+      @desc "max is a filter for maximum amount value"
+      arg(:max, :currency)
 
       resolve(&TransactionsResolver.transactions/3)
     end

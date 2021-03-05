@@ -132,4 +132,60 @@ defmodule HomeworkWeb.Schema.Query.TransactionsTest do
              }
            }
   end
+
+  @max_query """
+  {
+    transactions(max: "15.00"){
+      amount
+      credit
+      debit
+      description
+    }
+  }
+  """
+  test "get transactions query with max filter returns a list of transactions below the max amount" do
+    conn = build_conn()
+    conn = get(conn, "/graphiql", query: @max_query)
+
+    assert json_response(conn, 200) == %{
+             "data" => %{
+               "transactions" => [
+                 %{
+                   "amount" => "11.11",
+                   "credit" => true,
+                   "debit" => false,
+                   "description" => "test transaction 1"
+                 }
+               ]
+             }
+           }
+  end
+
+  @min_max_query """
+  {
+    transactions(min: "15.00", max: "25.00"){
+      amount
+      credit
+      debit
+      description
+    }
+  }
+  """
+  test "get transactions query with min and max filter returns a list of transactions between the min and max amounts" do
+    conn = build_conn()
+    conn = get(conn, "/graphiql", query: @min_max_query)
+
+    assert json_response(conn, 200) == %{
+             "data" => %{
+               "transactions" => [
+                 %{
+                   "amount" => "22.22",
+                   "credit" => true,
+                   "debit" => false,
+                   "description" => "test transaction 2"
+                 }
+               ]
+             }
+           }
+  end
 end
