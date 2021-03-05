@@ -29,8 +29,8 @@ defmodule Homework.Transactions do
       {:max, max}, query ->
         from(t in query, where: t.amount <= ^max)
 
-      _, query ->
-        query
+      {:description, description}, query ->
+        from(t in query, where: ilike(t.description, ^"%#{description}%"))
     end)
     |> Repo.all()
   end

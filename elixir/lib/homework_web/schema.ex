@@ -14,8 +14,12 @@ defmodule HomeworkWeb.Schema do
     field(:transactions, list_of(:transaction)) do
       @desc "min is a filter for minimum amount value"
       arg(:min, :currency)
+
       @desc "max is a filter for maximum amount value"
       arg(:max, :currency)
+
+      @desc "description is a filter that will search descriptions to match the requested input"
+      arg(:description, :string)
 
       resolve(&TransactionsResolver.transactions/3)
     end
