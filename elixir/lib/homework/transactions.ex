@@ -17,8 +17,22 @@ defmodule Homework.Transactions do
       [%Transaction{}, ...]
 
   """
-  def list_transactions(_args) do
-    Repo.all(Transaction)
+  def list_transactions(args) do
+    args
+    |> Enum.reduce(Transaction, fn
+      {_, nil}, query ->
+        query
+
+      {:min, min}, query ->
+        from(t in query, where: t.amount >= ^min)
+
+      {:max, max}, query ->
+        from(t in query, where: t.amount <= ^max)
+
+      {:description, description}, query ->
+        from(t in query, where: ilike(t.description, ^"%#{description}%"))
+    end)
+    |> Repo.all()
   end
 
   @doc """

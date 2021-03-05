@@ -17,8 +17,20 @@ defmodule Homework.Users do
       [%User{}, ...]
 
   """
-  def list_users(_args) do
-    Repo.all(User)
+  def list_users(args) do
+    args
+    |> Enum.reduce(User, fn
+      {_, nil}, query ->
+        query
+
+      {:name, name}, query ->
+        from(
+          u in query,
+          where: ilike(u.first_name, ^"%#{name}%"),
+          or_where: ilike(u.last_name, ^"%#{name}%")
+        )
+    end)
+    |> Repo.all()
   end
 
   @doc """

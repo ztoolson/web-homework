@@ -12,16 +12,33 @@ defmodule HomeworkWeb.Schema do
   query do
     @desc "Get all Transactions"
     field(:transactions, list_of(:transaction)) do
+      @desc "min is a filter for minimum amount value"
+      arg(:min, :currency)
+
+      @desc "max is a filter for maximum amount value"
+      arg(:max, :currency)
+
+      @desc "description is a filter that will search descriptions to match the requested input"
+      arg(:description, :string)
+
       resolve(&TransactionsResolver.transactions/3)
     end
 
     @desc "Get all Users"
     field(:users, list_of(:user)) do
+
+      @desc "name is a filter that will search name to match the requested input to check both the first name or last name"
+      arg(:name, :string)
+
       resolve(&UsersResolver.users/3)
     end
 
     @desc "Get all Merchants"
     field(:merchants, list_of(:merchant)) do
+
+      @desc "name is a filter that will search name to match the requested input"
+      arg(:name, :string)
+
       resolve(&MerchantsResolver.merchants/3)
     end
   end

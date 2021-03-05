@@ -49,4 +49,25 @@ defmodule HomeworkWeb.Schema.Query.MerchantsTest do
              }
            }
   end
+
+  @filter_query """
+  {
+    merchants(name: "exotic"){
+      description
+      name
+    }
+  }
+  """
+  test "merchants field returns a filtered list of merchants" do
+    conn = build_conn()
+    conn = get(conn, "/graphiql", query: @filter_query)
+
+    assert json_response(conn, 200) == %{
+             "data" => %{
+               "merchants" => [
+                 %{"description" => "Exotic Animal Zoo", "name" => "Greater Wynnewood Exotic Animal Park"}
+               ]
+             }
+           }
+  end
 end
