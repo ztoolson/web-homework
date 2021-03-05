@@ -5,7 +5,7 @@
 ## implementation notes
 
   - use ExUnit (same as existing tests) to add tests to the absinthe schema. this ensures our queries work now and will help prevent regressions.
-  - implemented happy path tests. i added a test for an error case (i.e. update a userid that doesn't exist). the application doesn't handle it gracefull so because of time, i commented it out.
+  - implemented happy path tests. i added a commented out test for an error case (attempt to update a user that doesn't exist). the application doesn't handle it gracefully current,  so because of time, i added a TODO to come back to this.
   - ehancements could include more error testing. if there were more robust validations (I.E. verify that dob on a user is not in the future or needs a specific format) that the error messages in the response are accurate.
   - other enhancements to the tests could be: when deleting a user, verify the expected behavior for transactions (do nothing)
 
