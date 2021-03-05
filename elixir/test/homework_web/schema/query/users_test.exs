@@ -59,4 +59,31 @@ defmodule HomeworkWeb.Schema.Query.UsersTest do
              }
            }
   end
+
+  @name_query """
+  {
+    users(name: "e"){
+      dob
+      first_name
+      last_name
+    }
+  }
+  """
+  test "users field returns a list of filtered users" do
+    conn = build_conn()
+    conn = get(conn, "/graphiql", query: @name_query)
+
+    assert json_response(conn, 200) == %{
+             "data" => %{
+               "users" => [
+                 %{"dob" => "3/15/1980", "first_name" => "michael", "last_name" => "scott"},
+                 %{
+                   "dob" => "3/5/1963",
+                   "first_name" => "joseph allen",
+                   "last_name" => "schreibvogel"
+                 }
+               ]
+             }
+           }
+  end
 end

@@ -26,6 +26,9 @@ defmodule HomeworkWeb.Schema do
 
     @desc "Get all Users"
     field(:users, list_of(:user)) do
+      @desc "name is a filter that will search name to match the requested input to check both the first name or last name"
+      arg(:name, :string)
+
       resolve(&UsersResolver.users/3)
     end
 
