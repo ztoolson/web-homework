@@ -17,17 +17,19 @@ defmodule Homework.Transactions do
       [%Transaction{}, ...]
 
   """
-  def list_transactions(%{min: min_amount}) do
-    query =
-      from(t in Transaction,
-        where: t.amount >= ^min_amount
-      )
+  def list_transactions(args) do
+    args
+    |> Enum.reduce(Transaction, fn
+      {_, nil}, query ->
+        query
 
-    Repo.all(query)
-  end
+      {:min, min}, query ->
+        from(t in query, where: t.amount >= ^min)
 
-  def list_transactions(_args) do
-    Repo.all(Transaction)
+      _, query ->
+        query
+    end)
+    |> Repo.all()
   end
 
   @doc """
