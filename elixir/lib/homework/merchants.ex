@@ -17,8 +17,16 @@ defmodule Homework.Merchants do
       [%Merchant{}, ...]
 
   """
-  def list_merchants(_args) do
-    Repo.all(Merchant)
+  def list_merchants(args) do
+    args
+    |> Enum.reduce(Merchant, fn
+      {_, nil}, query ->
+        query
+
+      {:name, name}, query ->
+        from(m in query, where: ilike(m.name, ^"%#{name}%"))
+    end)
+    |> Repo.all()
   end
 
   @doc """
