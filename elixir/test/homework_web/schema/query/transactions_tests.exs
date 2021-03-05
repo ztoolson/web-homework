@@ -26,7 +26,7 @@ defmodule HomeworkWeb.Schema.Query.TransactionsTest do
 
     transactions = [
       %Transaction{
-        amount: 1111,
+        amount: 1111, # cents
         credit: true,
         debit: false,
         description: "test transaction 1",
@@ -34,7 +34,7 @@ defmodule HomeworkWeb.Schema.Query.TransactionsTest do
         merchant_id: merchant.id
       },
       %Transaction{
-        amount: 2222,
+        amount: 2222, # cents
         credit: true,
         debit: false,
         description: "test transaction 2",
@@ -42,7 +42,7 @@ defmodule HomeworkWeb.Schema.Query.TransactionsTest do
         merchant_id: merchant.id
       },
       %Transaction{
-        amount: 3333,
+        amount: 3333, # cents
         credit: true,
         debit: false,
         description: "test transaction 3",
@@ -74,19 +74,19 @@ defmodule HomeworkWeb.Schema.Query.TransactionsTest do
              "data" => %{
                "transactions" => [
                  %{
-                   "amount" => 1111,
+                   "amount" => "11.11",
                    "credit" => true,
                    "debit" => false,
                    "description" => "test transaction 1"
                  },
                  %{
-                   "amount" => 2222,
+                   "amount" => "22.22",
                    "credit" => true,
                    "debit" => false,
                    "description" => "test transaction 2"
                  },
                  %{
-                   "amount" => 3333,
+                   "amount" => "33.33",
                    "credit" => true,
                    "debit" => false,
                    "description" => "test transaction 3"

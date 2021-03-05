@@ -37,7 +37,7 @@ defmodule HomeworkWeb.Schema.Query.DeleteTransactionTest do
       Repo.insert!(%Transaction{
         user_id: user.id,
         merchant_id: merchant.id,
-        amount: 1111,
+        amount: 1111, # cents
         credit: true,
         debit: false,
         description: "test transaction 1"
@@ -59,7 +59,7 @@ defmodule HomeworkWeb.Schema.Query.DeleteTransactionTest do
                  "id" => transaction.id,
                  "user_id" => user.id,
                  "merchant_id" => merchant.id,
-                 "amount" => 1111,
+                 "amount" => "11.11",
                  "credit" => true,
                  "debit" => false,
                  "description" => "test transaction 1"

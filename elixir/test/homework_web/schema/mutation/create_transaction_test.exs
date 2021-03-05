@@ -39,7 +39,7 @@ defmodule HomeworkWeb.Schema.Query.CreateTransactionTest do
         variables: %{
           user_id: user.id,
           merchant_id: merchant.id,
-          amount: 50000,
+          amount: "502.23",
           credit: false,
           debit: true,
           description: "private tiger tour"
@@ -51,7 +51,7 @@ defmodule HomeworkWeb.Schema.Query.CreateTransactionTest do
                "createTransaction" => %{
                  "user_id" => user.id,
                  "merchant_id" => merchant.id,
-                 "amount" => 50000,
+                 "amount" => "502.23",
                  "credit" => false,
                  "debit" => true,
                  "description" => "private tiger tour"
