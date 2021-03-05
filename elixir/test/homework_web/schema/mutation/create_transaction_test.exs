@@ -17,7 +17,7 @@ defmodule HomeworkWeb.Schema.Query.CreateTransactionTest do
     }
   }
   """
-  test "createTransaction field creates a transaction sucessfully " do
+  test "createTransaction field creates a transaction sucessfully" do
     user =
       Repo.insert!(%User{
         dob: "3/15/1980",

@@ -19,7 +19,7 @@ defmodule HomeworkWeb.Schema.Query.DeleteTransactionTest do
     }
   }
   """
-  test "deleteTransaction field deletes a transaction sucessfully " do
+  test "deleteTransaction field deletes a transaction sucessfully" do
     user =
       Repo.insert!(%User{
         dob: "3/15/1980",

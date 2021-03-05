@@ -19,7 +19,7 @@ defmodule HomeworkWeb.Schema.Query.UpdateTransactionTest do
     }
   }
   """
-  test "update field update an existing transaction sucessfully " do
+  test "update field update an existing transaction sucessfully" do
     user =
       Repo.insert!(%User{
         dob: "3/15/1980",

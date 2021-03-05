@@ -49,7 +49,7 @@ defmodule HomeworkWeb.Schema.Query.UpdateUserTest do
   end
 
   # TODO: work to get this test returning a nice eror when Ecto.NoResultError is raised
-  # test "updateUser field updates a non existant user" do
+  # test "updateUser field attempts to update a non existant user" do
   #   user =
   #     Repo.insert!(%User{
   #       dob: "3/15/1963",

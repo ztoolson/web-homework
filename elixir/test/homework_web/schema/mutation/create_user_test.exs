@@ -11,7 +11,7 @@ defmodule HomeworkWeb.Schema.Query.CreateUserTest do
   }
 
   """
-  test "createUser field creates a user sucessfully " do
+  test "createUser field creates a user sucessfully" do
     conn = build_conn()
 
     conn =
@@ -44,7 +44,7 @@ defmodule HomeworkWeb.Schema.Query.CreateUserTest do
     }
   }
   """
-  test "createUser with not the required inputs will error" do
+  test "createUser without the required inputs will error" do
     conn = build_conn()
 
     conn =

@@ -39,7 +39,7 @@ defmodule HomeworkWeb.Schema.Query.CreateMerchantTest do
     }
   }
   """
-  test "createMerchant with not the required inputs will error" do
+  test "createMerchant without the required inputs will error" do
     conn = build_conn()
 
     conn =
