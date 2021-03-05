@@ -37,7 +37,7 @@ defmodule HomeworkWeb.Schema.Query.UpdateTransactionTest do
       Repo.insert!(%Transaction{
         user_id: user.id,
         merchant_id: merchant.id,
-        amount: 1111,
+        amount: 1111, # cents
         credit: true,
         debit: false,
         description: "test transaction 1"
@@ -52,7 +52,7 @@ defmodule HomeworkWeb.Schema.Query.UpdateTransactionTest do
           id: transaction.id,
           user_id: user.id,
           merchant_id: merchant.id,
-          amount: 100_000,
+          amount: "100000.00",
           credit: false,
           debit: true,
           description: "private tiger tour"
@@ -65,7 +65,7 @@ defmodule HomeworkWeb.Schema.Query.UpdateTransactionTest do
                  "id" => transaction.id,
                  "user_id" => user.id,
                  "merchant_id" => merchant.id,
-                 "amount" => 100_000,
+                 "amount" => "100000.00",
                  "credit" => false,
                  "debit" => true,
                  "description" => "private tiger tour"

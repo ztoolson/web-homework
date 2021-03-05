@@ -35,6 +35,7 @@ defmodule Homework.MixProject do
     [
       {:absinthe, "~> 1.4"},
       {:absinthe_plug, "~> 1.4"},
+      {:decimal, "~> 1.0"}, # decimal 2.0 depends on an upgraded absinthe library
       {:ecto_sql, "~> 3.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},

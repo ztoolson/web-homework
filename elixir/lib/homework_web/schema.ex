@@ -31,4 +31,24 @@ defmodule HomeworkWeb.Schema do
     import_fields(:user_mutations)
     import_fields(:merchant_mutations)
   end
+
+  scalar :currency do
+    parse(fn
+      %{value: value}, _ ->
+        cents =
+          value
+          |> Decimal.cast()
+          |> Decimal.mult(Decimal.new("100"))
+          |> Decimal.to_integer()
+
+        {:ok, cents}
+
+      _, _ ->
+        :error
+    end)
+
+    serialize(fn input ->
+      :erlang.float_to_binary(input / 100.0, decimals: 2)
+    end)
+  end
 end
