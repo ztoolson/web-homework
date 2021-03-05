@@ -26,7 +26,8 @@ defmodule HomeworkWeb.Schema.Query.TransactionsTest do
 
     transactions = [
       %Transaction{
-        amount: 1111, # cents
+        # cents
+        amount: 1111,
         credit: true,
         debit: false,
         description: "test transaction 1",
@@ -34,7 +35,8 @@ defmodule HomeworkWeb.Schema.Query.TransactionsTest do
         merchant_id: merchant.id
       },
       %Transaction{
-        amount: 2222, # cents
+        # cents
+        amount: 2222,
         credit: true,
         debit: false,
         description: "test transaction 2",
@@ -42,7 +44,8 @@ defmodule HomeworkWeb.Schema.Query.TransactionsTest do
         merchant_id: merchant.id
       },
       %Transaction{
-        amount: 3333, # cents
+        # cents
+        amount: 3333,
         credit: true,
         debit: false,
         description: "test transaction 3",
@@ -79,6 +82,40 @@ defmodule HomeworkWeb.Schema.Query.TransactionsTest do
                    "debit" => false,
                    "description" => "test transaction 1"
                  },
+                 %{
+                   "amount" => "22.22",
+                   "credit" => true,
+                   "debit" => false,
+                   "description" => "test transaction 2"
+                 },
+                 %{
+                   "amount" => "33.33",
+                   "credit" => true,
+                   "debit" => false,
+                   "description" => "test transaction 3"
+                 }
+               ]
+             }
+           }
+  end
+
+  @min_query """
+  {
+    transactions(min: "15.00"){
+      amount
+      credit
+      debit
+      description
+    }
+  }
+  """
+  test "get transactions query with min filter returns a list of transactions above the min amount" do
+    conn = build_conn()
+    conn = get(conn, "/graphiql", query: @min_query)
+
+    assert json_response(conn, 200) == %{
+             "data" => %{
+               "transactions" => [
                  %{
                    "amount" => "22.22",
                    "credit" => true,

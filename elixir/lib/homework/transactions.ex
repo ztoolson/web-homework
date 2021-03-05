@@ -17,6 +17,15 @@ defmodule Homework.Transactions do
       [%Transaction{}, ...]
 
   """
+  def list_transactions(%{min: min_amount}) do
+    query =
+      from(t in Transaction,
+        where: t.amount >= ^min_amount
+      )
+
+    Repo.all(query)
+  end
+
   def list_transactions(_args) do
     Repo.all(Transaction)
   end
